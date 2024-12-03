@@ -19,7 +19,7 @@ type SumResponce struct {
 // @ID			SumSlice
 // @Accept		json
 // @Produce		json
-// @Param		query		body		SumData		true	"Данные"
+// @Param		datd		body		SumData		true	"Данные"
 // @Success		200			{object}	SumResponce		"success"
 // @Failure		400,500		{object}	errorResponce	"error"
 // @Router		/Sum [post]

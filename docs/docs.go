@@ -60,6 +60,53 @@ const docTemplate = `{
                 }
             }
         },
+        "/Multiplication": {
+            "post": {
+                "description": "Сумма массива чисел переданого в структуре SumData",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "numbers"
+                ],
+                "summary": "Сумма массива чисел",
+                "operationId": "MultiplicationSlice",
+                "parameters": [
+                    {
+                        "description": "Данные",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/service.SumData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/service.SumResponce"
+                        }
+                    },
+                    "400": {
+                        "description": "error",
+                        "schema": {
+                            "$ref": "#/definitions/service.errorResponce"
+                        }
+                    },
+                    "500": {
+                        "description": "error",
+                        "schema": {
+                            "$ref": "#/definitions/service.errorResponce"
+                        }
+                    }
+                }
+            }
+        },
         "/Ping": {
             "get": {
                 "description": "Проверка доступности сервера",
@@ -98,7 +145,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "Данные",
-                        "name": "query",
+                        "name": "datd",
                         "in": "body",
                         "required": true,
                         "schema": {
