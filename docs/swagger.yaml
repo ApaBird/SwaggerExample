@@ -1,0 +1,104 @@
+definitions:
+  service.EvenRecponce:
+    properties:
+      even:
+        type: boolean
+    type: object
+  service.SumData:
+    properties:
+      data:
+        items:
+          type: number
+        type: array
+    type: object
+  service.SumResponce:
+    properties:
+      sum:
+        type: number
+    type: object
+  service.errorResponce:
+    properties:
+      comment:
+        type: string
+      error:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /Even:
+    get:
+      consumes:
+      - application/json
+      description: Проверка чётности числа
+      operationId: Even
+      parameters:
+      - description: Число
+        in: query
+        name: num
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.EvenRecponce'
+        "400":
+          description: error
+          schema:
+            $ref: '#/definitions/service.errorResponce'
+        "500":
+          description: error
+          schema:
+            $ref: '#/definitions/service.errorResponce'
+      summary: Четность
+      tags:
+      - numbers
+  /Ping:
+    get:
+      description: Проверка доступности сервера
+      operationId: Ping
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.EvenRecponce'
+      summary: Ping
+      tags:
+      - ping
+  /Sum:
+    post:
+      consumes:
+      - application/json
+      description: Сумма массива чисел переданого в структуре SumData
+      operationId: SumSlice
+      parameters:
+      - description: Данные
+        in: body
+        name: query
+        required: true
+        schema:
+          $ref: '#/definitions/service.SumData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.SumResponce'
+        "400":
+          description: error
+          schema:
+            $ref: '#/definitions/service.errorResponce'
+        "500":
+          description: error
+          schema:
+            $ref: '#/definitions/service.errorResponce'
+      summary: Сумма массива чисел
+      tags:
+      - numbers
+swagger: "2.0"
